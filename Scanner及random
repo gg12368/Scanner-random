@@ -1,0 +1,109 @@
+**1.Scanner类（可以实现键盘输入数据到程序当中）**
+以下代码使用户能够从System.in中读取一个数
+~~~java
+Scanner sc=new Scanner();
+int i=sc.nextInt();
+~~~
+System.in系统输入指的是通过键盘录入数据
+示例1：
+~~~java
+import java.util.Scanner;
+/*
+ * 1。导包 
+ * import 包路径.类名称
+ * 如果需要使用的目标类，和当前类位于同一包下，则可以省略导包语句
+ * 只有java.lang包下的内容不需要导包
+ * 2.创建
+ * 类名称 对象名=new 类名称
+ * 3.使用
+ * 对象.成员方法名()
+ * 获取键盘输入的一个int数字： int num=sc.next.Int();
+ * 获取键盘输入的一个字符串：String str=sc.next();
+ */
+/*
+ * 题目：键盘输入两个数字，并且求出和值
+ */
+public class Demo {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("请输入第一个值：");
+		int i=sc.nextInt();
+		System.out.println("请输入第二个值：");
+		int j=sc.nextInt();
+		System.out.println("其和为：");
+		System.out.println(i+j);
+	}
+}
+~~~
+运行结果：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190916143404147.png)
+示例2：
+~~~java
+/*
+ * 题目：求出三个数中的最大值
+ */
+public class Demo {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("请输入第一个数字：");
+		int a=sc.nextInt();
+		System.out.println("请输入第二个数字：");
+		int b=sc.nextInt();
+		System.out.println("请输入第三个数字：");
+		int c=sc.nextInt();
+		
+		int temp=a>b?a:b;
+		int max=temp>c?temp:c;
+		System.out.println("其最大值为："+max);
+	}
+}
+~~~
+运行结果：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2019091614383554.png)
+**2.Random类**
+示例1：
+~~~java
+import java.util.Random;
+/*
+ * 题目要求：
+ * 根据int变量m的值，来获取随机数字，范围是[1,n],可以取到1和n。
+ */
+public class Demo {
+	public static void main(String[] args) {
+		int n=5;
+		Random r=new Random();
+		int result=r.nextInt(n)+1; //本来范围是[0,n)，整体加1后为[1,n+1),即[1,n]
+	}
+}
+~~~
+示例2：猜数字游戏
+~~~java
+import java.util.Random;
+import java.util.Scanner;
+
+public class Demo {
+	public static void main(String[] args) {
+		Random r = new Random();
+		int randomNum = r.nextInt(100) + 1; // [1,100]
+		System.out.println(randomNum);//现实生活中并不会这样做
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			System.out.println("请输入您猜测的数字");
+			int guessNum = sc.nextInt();// 键盘输入猜测的数字
+
+			if (guessNum > randomNum) {
+				System.out.println("猜大了");
+			} else if (guessNum < randomNum) {
+				System.out.println("猜小了");
+			} else {
+				System.out.println("猜中了");
+				break;
+			}
+		}
+		System.out.println("游戏结束");
+	}
+}
+~~~
+运行结果：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190916145902249.png)
